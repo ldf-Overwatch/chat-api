@@ -9,6 +9,7 @@ function minMinutes(date, minutes) {
     return new Date(date.getTime() - minutes*60000);
 }
 
+
 passport.use(new LocalStrategy(
     function(username, password, done) {
         _db.User.findOne({
@@ -46,6 +47,10 @@ exports.authenticate = passport.authenticate('local', { failureRedirect: '/error
 exports.registration = function(req, res ) {
 
     let form = new multiparty.Form({maxFilesSize: 1024 * 1024 * 2});
+    /**
+     * GÉRER LES DONNÉES DE FORMULAIRE MULTIPART  TÉLÉCHARGEMENT DE FICHIERS
+     */
+
 
     form.parse(req, function (err, fields, files) {
 
@@ -99,7 +104,7 @@ exports.registration = function(req, res ) {
                     });
                 }
                 else {
-                    return res.send('not image');
+                    return res.status(403).send({err:'not image'});
                 }
             }
 
@@ -126,8 +131,9 @@ exports.login = function(req, res ) {
         if (username !== undefined && username.length > 0) {
 
             let user = {
-                username: username,
-                password: password
+                    username: username,
+                    password: password
+
             };
 
             _db.User.findOne(user).exec().then(function(_user)

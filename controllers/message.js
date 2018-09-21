@@ -15,6 +15,7 @@ exports.creation = function(req, res ) {
 
     form.parse(req, function (err, fields, files) {
 
+
         if (err) console.log(err);
 
 
@@ -44,6 +45,7 @@ exports.creation = function(req, res ) {
                 };
 
                 console.log(new_message);
+
 
                 //db connection a la base de donnée
 

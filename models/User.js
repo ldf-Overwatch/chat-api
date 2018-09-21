@@ -1,13 +1,17 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
-// le schema user
-    let UserSchema = new Schema({
-        username:  String,
+
+/**
+ * le schema user
+  */
+
+    let UserSchema = new Schema( {
+        username:  {type: String, required: true, index: { unique: true, dropDups: true } },
         image: String,
-        password: String,
-        email:String,
-        name : String,
+        password: {type: String, required: true},
+        email: {type: String, required: true, index: { unique: true, dropDups: true } },
+        name : {type: String, required: true},
         connected: {type: Date, default: Date.now}
     });
 

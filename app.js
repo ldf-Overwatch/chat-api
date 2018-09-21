@@ -83,7 +83,8 @@ let app = express();
             cb(null, user);
         });
     });
-// routes
+
+    // routes
             load('db')
                 .then('models')
                 .into(app);
