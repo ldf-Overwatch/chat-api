@@ -6,7 +6,7 @@ let path = require('path');
 let fs = require('fs');
 
 function minMinutes(date, minutes) {
-    return new Date(date.getTime() - minutes*60000);
+    return new Date(date.getTime() - minutes*600000);
 }
 
 
